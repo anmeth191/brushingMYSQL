@@ -152,3 +152,34 @@ POW raised to the the argument(number) power.
 SELECT ABS(ROUND(SQRT(POW((MIN(LAT_N)-MAX(LAT_N)),2)
             + POW((MIN(LONG_W)-MAX(LONG_W)),2)
  ),4)) FROM STATION
+
+ /*PROBLEM 19
+ Generate the following two result sets:
+
+    Query an alphabetically ordered list of all names in OCCUPATIONS, immediately followed by the first letter of each profession as a parenthetical (i.e.: enclosed in parentheses). For example: AnActorName(A), ADoctorName(D), AProfessorName(P), and ASingerName(S).
+
+    Query the number of ocurrences of each occupation in OCCUPATIONS. Sort the occurrences in ascending order, and output them in the following format:
+
+    There are a total of [occupation_count] [occupation]s.
+
+    where [occupation_count] is the number of occurrences of an occupation in OCCUPATIONS and [occupation] is the lowercase occupation name. If more than one Occupation has the same [occupation_count], they should be ordered alphabetically.
+
+Note: There will be at least two entries in the table for each type of occupation.
+
+Input Format
+
+The OCCUPATIONS table is described as follows: Occupation will only contain one of the following values: Doctor, Professor, Singer or Actor.
+
+Sample Input
+
+An OCCUPATIONS table that contains the following records:
+ 
+ 
+ 
+ */
+/*STILL IS NOT DONE TOMORROW I HAVE TO KEEO WORKING ON IT */
+ SELECT CONCAT(NAME,"(",LEFT(OCCUPATION,1),")") FROM OCCUPATIONS ORDER BY NAME ASC;
+SELECT CONCAT("There are a total of ",COUNT(OCCUPATION)," ",OCCUPATION,"s") AS COUNTER 
+FROM OCCUPATIONS 
+GROUP BY OCCUPATION 
+ORDER BY COUNTER ASC
