@@ -1,0 +1,3 @@
+/*This is a new course about learning more of SQL today i have done introducting videos
+hopefully by the end of the course i can understand better and use it in my app
+*/
