@@ -1,0 +1,49 @@
+this is to create the basic schema of an app i am doint this because i struggle still 
+doing the data connection and make an app make sense 
+
+
+//creating the users table just for the loggin reasons
+CREATE TABLE users(
+ id INTEGER PRIMARY KEY auto_increment,
+ username VARCHAR(255) UNIQUE NOT NULL,
+ created_as TIMESTAMP DEFAULT NOW()
+ )
+
+
+ //create the photos that is going to have a reference to the user that posted the photo, in this case using the 
+ id in user table and user_id in photos table to create the reference
+
+ CREATE TABLE photos(
+ id INTEGER AUTO_INCREMENT PRIMARY KEY,
+ image_url VARCHAR(255) NOT NULL,
+ user_id INTEGER NOT NULL,
+ created_at TIMESTAMP DEFAULT NOW(),
+ FOREIGN KEY (user_id) REFERENCES users(id)
+ );
+
+////create the comments, when an user comments a photo they both needs to be saved in the comment
+ CREATE TABLE comments(
+ id INTEGER PRIMARY KEY AUTO_INCREMENT,
+ comment_text VARCHAR(255) NOT NULL,
+ created_at TIMESTAMP DEFAULT NOW(),
+ user_id INTEGER NOT NULL,
+ photo_id INTEGER NOT NULL,
+ FOREIGN KEY (user_id) REFERENCES users(id),
+ FOREIGN KEY (photo_id) REFERENCES photos(id)
+ );
+
+
+ //create the likes table , to check if the like in an element does not exist we save the photo and the user and primary KEY
+ the reason is because they dont duplicate so we will get an error message
+ 
+ 
+ CREATE TABLE likes(
+ user_id INTEGER NOT NULL, 
+ photo_id INTEGER NOT NULL, 
+ created_at TIMESTAMP DEFAULT NOW(),
+ FOREIGN KEY (photo_id) REFERENCES photos(id),
+ FOREIGN KEY (user_id) REFERENCES users(id),
+ PRIMARY KEY(user_id , photo_id)
+ );
+ 
+ 
